@@ -1,1 +1,5 @@
 # Redux Notes
+
+## Notes
+
+## Additional
