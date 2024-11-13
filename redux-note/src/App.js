@@ -11,7 +11,7 @@ function App() {
     <div className="App">
        <h1>{number}</h1>
        <button onClick={() => dispatch(increment())}>+ Add</button>
-       <button OnClick={() => dispatch(decrement())}>- Minus</button>
+       <button onClick={() => dispatch(decrement())}>- Minus</button>
     </div>
   );
 }
