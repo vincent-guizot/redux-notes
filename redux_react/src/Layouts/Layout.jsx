@@ -32,6 +32,10 @@ function Layout() {
           </Link>
         </div>
       </div>
+
+      <div className="p-3">
+        <Outlet></Outlet>
+      </div>
     </>
   );
 }

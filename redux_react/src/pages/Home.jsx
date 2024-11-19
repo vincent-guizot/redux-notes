@@ -6,8 +6,7 @@ import { getContents } from "../redux/axios";
 function Home() {
   const dispatch = useDispatch();
 
-  const contents = useSelector((state) => state.contents);
-  const loading = useSelector((state) => state.loading);
+  const { contents } = useSelector((state) => state.content);
 
   useEffect(() => {
     dispatch(getContents());
@@ -19,7 +18,7 @@ function Home() {
       <div className="">
         <p className="text-stone-500 font-bold text-xl">Content List</p>
       </div>
-      <div></div>
+      <div>{JSON.stringify(contents)}</div>
     </div>
   );
 }

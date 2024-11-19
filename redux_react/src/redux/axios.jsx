@@ -3,26 +3,27 @@ import axios from "axios";
 
 import { fetchBegin, fetchFailure, fetchSuccess } from "./actions";
 
-const URL = "http//localhost:3000";
+const URL = "http://localhost:3000";
 
-function handleErrors(err) {
-  if (!err.ok) {
-    throw Error(err.statusText);
+function handleErrors(response) {
+  if (response.statusText !== "OK") {
+    throw Error(response.statusText);
   }
-  return err;
+  return response;
 }
 
-export const getContents = async () => {
+export const getContents = () => {
   return (dispatch) => {
     dispatch(fetchBegin());
-    return axios({
+    axios({
       method: "GET",
       url: URL + "/contents",
     })
       .then(handleErrors)
       .then((result) => {
+        console.log(result.data);
         dispatch(fetchSuccess(result.data));
-        return result.data;
+        // return result.data;
       })
       .catch((err) => dispatch(fetchFailure(err)));
   };

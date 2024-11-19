@@ -1,6 +1,5 @@
-export const ACTIONS = {
+const ACTIONS = {
   // CONTENTS
-  GET_CONTENTS: "get_contents",
   ADD_CONTENT: "add_contents",
   REMOVE_CONTENT: "remove_contents",
   EDIT_CONTENT: "edit_content",
@@ -33,3 +32,5 @@ export const fetchFailure = (error) => {
     payload: { error },
   };
 };
+
+export default ACTIONS;

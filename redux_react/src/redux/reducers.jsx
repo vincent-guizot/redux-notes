@@ -1,62 +1,61 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 
 import { thunk } from "redux-thunk";
-import {
-  GET_CONTENTS,
-  LOG_IN_SUCCESS,
-  FETCH_SUCCESS,
-  FETCH_BEGIN,
-  FETCH_FAILURE,
-} from "./actions";
+
+import ACTIONS from "./actions";
+
+const { FETCH_BEGIN, FETCH_FAILURE, FETCH_SUCCESS } = ACTIONS;
 
 const initialState = {
   contents: [],
   logStatus: false,
   user: {},
-  loding: false,
+  loading: false,
   error: null,
 };
-const contentReducers = (initialState, action) => {
+
+const contentReducers = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_SUCCESS:
       return {
-        ...initialState,
+        ...state,
         loading: false,
         contents: action.payload.contents,
       };
     case FETCH_BEGIN:
       return {
-        ...initialState,
+        ...state,
         loading: true,
         error: null,
       };
     case FETCH_FAILURE:
       return {
-        ...initialState,
+        ...state,
         loading: false,
-        error: action.payload.errrr,
+        error: action.payload.err,
       };
     default:
-      return initialState;
+      return state;
   }
 };
 
-const logReducers = (initialState, action) => {
-  switch (action.type) {
-    case LOG_IN_SUCCESS:
-      return {
-        ...initialState,
-        logStatus: true,
-        user: action.payload.user,
-      };
-      break;
-  }
-};
+// const logReducers = (initialState, action) => {
+//   switch (action.type) {
+//     case LOG_IN_SUCCESS:
+//       return {
+//         ...initialState,
+//         logStatus: true,
+//         user: action.payload.user,
+//       };
+//       break;
+//     default:
+//       return initialState;
+//   }
+// };
+
 const reducers = combineReducers({
   content: contentReducers,
-  log: logReducers,
+  // log: logReducers,
 });
 
-const store = createStore(reducers, applyMiddleware(thunk));
-
-export default store;
+export default reducers;
