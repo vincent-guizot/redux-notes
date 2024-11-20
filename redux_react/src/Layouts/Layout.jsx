@@ -6,8 +6,9 @@ function Layout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("")) {
-      //   navigate("/login");
+    if (localStorage.getItem("token")) {
+      navigate("/login");
+    } else {
     }
   }, []);
 
