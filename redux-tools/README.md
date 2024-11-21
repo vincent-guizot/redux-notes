@@ -17,4 +17,4 @@ This application is alredy included with these packages:
 4. react-icons
 5. react-redux redux @reduxjs/toolkit
 6. axios
-7.
+7. sweetalert2
