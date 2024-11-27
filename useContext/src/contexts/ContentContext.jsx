@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 
 const ContentContext = createContext();
 
-export const ContentProvider = ({children}  ) => {
+export const ContentProvider = ({ children }) => {
   const [contents, setContents] = useState([]);
   const value = {
     contents,
@@ -11,7 +11,7 @@ export const ContentProvider = ({children}  ) => {
 
   return (
     <>
-      <ContentContext.Provider value={value}>{children  }  </ContentContext.Provider>
+      <ContentContext.Provider value={value}>{children}  </ContentContext.Provider>
     </>
   );
 };

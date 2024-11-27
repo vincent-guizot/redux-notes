@@ -9,9 +9,9 @@ import { ContentProvider } from "./contexts/ContentContext.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ContentProvider>
-    <RouterProvider router={router}>
-      <App />
-    </RouterProvider>
+      <RouterProvider router={router}>
+        <App />
+      </RouterProvider>
     </ContentProvider>
   </StrictMode>
 );

@@ -1,34 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useState } from "react";
 import ContentContext from "../contexts/ContentContext";
 import ContentCard from "../components/ContentCard";
 import { Link } from "react-router-dom";
+import useGetContents from '../hooks/useGetContents'
+import { useEffect } from "react";
 
 function Home() {
+  const [title, setTitle] = useState("")
   const { contents, setContents } = useContext(ContentContext);
-
-  const [loading, setLoading] = useState(false);
-  const getAllContents = async () => {
-    try {
-      const results = await axios({
-        method: "GET",
-        url: "http://localhost:3000/contents",
-      });
-      console.log(results.data);
-      setContents(results.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    getAllContents();
-    if (contents) {
-      setLoading(false);
-    } else {
-      setLoading(true);
-    }
-  }, []);
+  const { loading, error } = useGetContents("")
 
   return (
     <div className="w-full ">
@@ -43,15 +23,50 @@ function Home() {
         </Link>
       </div>
 
-      <div className=" flex justify-center w-3/4 mx-auto">
-        <div className="p-3  grid grid-cols-5 gap-5 place-content-center">
-          {loading ? <p>Loading Data</p> : ""}
+      <div className="w-3/4 mx-auto">
 
-          {contents.map((content) => {
-            return (
-              <ContentCard key={content.id} content={content}></ContentCard>
-            );
-          })}
+        <div className="flex">
+          <div className="flex-[0.25] p-3 bg-slate-50">
+            <p className="my-3 font-medium text-xl">FILTER</p>
+            <div className="flex flex-col" >
+              <p className=" text-slate-700">Published</p>
+              <div className="flex flex-col">
+                <p>Yes</p>
+                <p>No</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm/6 font-medium text-gray-900"
+              >
+                Search Content
+              </label>
+              <div className="mt-2">
+                <input
+                  id="title"
+                  name="title"
+                  type="title"
+                  required
+                  autoComplete="title"
+                  onChange={(e) => setTitle(e.target.value)}
+                  value={title}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
+                />
+              </div>
+            </div>
+            <div className="p-3  grid grid-cols-5 gap-5 place-content-center">
+              {loading && <h1>Loading Data</h1>}
+              {contents.map((content) => {
+                return (
+                  <ContentCard key={content.id} content={content}></ContentCard>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>

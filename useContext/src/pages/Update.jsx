@@ -1,7 +1,7 @@
 import React from "react";
 
 function Update() {
-  return <div>Update</div>;
+  return <div className="w-full">Update</div>;
 }
 
 export default Update;
