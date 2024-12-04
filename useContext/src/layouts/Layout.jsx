@@ -11,12 +11,12 @@ function Layout() {
               Content with useContext
             </Link>
           </h1>
-          {/* <Link
-            className="rounded-md px-2 py-2 text-white  -700 hover:bg-lime-900 font-medium"
+          <Link
+            className="rounded-md px-2 py-2 text-white hover:bg-white hover:text-blue-500 font-medium"
             to="/contents/create"
           >
             Create
-          </Link> */}
+          </Link>
         </div>
       </div>
       <Outlet></Outlet>
